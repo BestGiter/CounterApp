@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: counter-api        # you can change this name
+    env: python
+    plan: free               # use the free plan
+    buildCommand: ""         # Render will just install requirements.txt
+    startCommand: gunicorn app:app
