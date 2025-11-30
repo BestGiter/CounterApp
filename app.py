@@ -1,5 +1,7 @@
 from flask import Flask
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 def load():
     with open("data.txt", "a+") as f:
         f.seek(0)
@@ -30,4 +32,5 @@ def set_():
 @app.route("/reset")
 def reset():
     save(0)
+
     return {"counter": 0}
