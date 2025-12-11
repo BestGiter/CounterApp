@@ -12,7 +12,7 @@ def load():
             return 0
     try:
         return int(content)
-    except TypeError:
+    except ValueError:
         return 0
 
 def save(x):
@@ -24,13 +24,22 @@ def save(x):
 @app.route("/get")
 def get():
     return {"counter": load()}
-@app.route("/set")
+@app.route("/set", methods=["POST"])
 def set_():
     x = load()+1
     save(x)
     return {"counter": x}
-@app.route("/reset")
+@app.route("/reset", methods=["POST"])
 def reset():
     save(0)
 
     return {"counter": 0}
+
+@app.route("/")
+def home():
+    return """
+    <html>
+    <h1>This is a counter app, this is the home</h1>
+    </html>
+    """
+
